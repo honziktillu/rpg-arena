@@ -29,46 +29,53 @@ public class Arena {
         System.out.println("1. Utok");
         System.out.println("2. Obrana");
         System.out.print("Zadejte cislo: ");
-        switch (Integer.parseInt(IOUtil.getInput())) {
-            case 1 -> {
-                IOUtil.printText(player.getName() + " zautocil");
-                double d = Math.random();
-                if (d < 0.5) {
-                    //Enemy utoci
-                    IOUtil.printText(enemy.getName() + " zautocil");
-                    enemy.setHp(Math.floor(enemy.getHp() - player.getDmg()));
-                    if (isEnemyDead(player, enemy)) {
+        int i;
+        try {
+            i = Integer.parseInt(IOUtil.getInput());
+            switch (i) {
+                case 1 -> {
+                    IOUtil.printText(player.getName() + " zautocil");
+                    double d = Math.random();
+                    if (d < 0.5) {
+                        //Enemy utoci
+                        IOUtil.printText(enemy.getName() + " zautocil");
+                        enemy.setHp(Math.floor(enemy.getHp() - player.getDmg()));
+                        if (isEnemyDead(player, enemy)) {
+                            return;
+                        }
+                        player.setHp(Math.floor(player.getHp() - enemy.getDmg()));
+                        if(isPlayerDead(player)) {
+                            return;
+                        }
                         return;
                     }
-                    player.setHp(Math.floor(player.getHp() - enemy.getDmg()));
-                    if(isPlayerDead(player)) {
-                        return;
-                    }
-                    return;
+                    //Enemy se brani
+                    IOUtil.printText(enemy.getName() + " se brani");
+                    enemy.setHp(Math.floor(enemy.getHp() - (player.getDmg() / 3)));
+                    isEnemyDead(player, enemy);
                 }
-                //Enemy se brani
-                IOUtil.printText(enemy.getName() + " se brani");
-                enemy.setHp(Math.floor(enemy.getHp() - (player.getDmg() / 3)));
-                isEnemyDead(player, enemy);
-            }
-            case 2 -> {
-                IOUtil.printText(player.getName() + " se brani");
-                double d = Math.random();
-                if (d < 0.5) {
-                    // Enemy utoci
-                    IOUtil.printText(enemy.getName() + " zautocil");
-                    player.setHp(Math.floor(player.getHp() - (enemy.getDmg() / 3)));
-                    if(isPlayerDead(player)) {
+                case 2 -> {
+                    IOUtil.printText(player.getName() + " se brani");
+                    double d = Math.random();
+                    if (d < 0.5) {
+                        // Enemy utoci
+                        IOUtil.printText(enemy.getName() + " zautocil");
+                        player.setHp(Math.floor(player.getHp() - (enemy.getDmg() / 3)));
+                        if(isPlayerDead(player)) {
+                            return;
+                        }
                         return;
                     }
-                    return;
+                    // Enemy se brani
+                    IOUtil.printText(enemy.getName() + " se brani");
+                    IOUtil.printText("Nic se nestalo :/");
                 }
-                // Enemy se brani
-                IOUtil.printText(enemy.getName() + " se brani");
-                IOUtil.printText("Nic se nestalo :/");
+                default -> round(player, enemy);
             }
-            default -> round(player, enemy);
+        } catch (Exception e) {
+            round(player, enemy);
         }
+
     }
 
     private boolean isPlayerDead(Entity player) {
