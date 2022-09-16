@@ -13,8 +13,8 @@ public class Main {
         arena.fight(player, enemy);
         arena = new Arena("Kiosek");
         player.setHp(100);
-        player.setDmg(10);
-        enemy.setHp(1000);
+        player.setDmg(5);
+        enemy.setHp(1000000);
         enemy.setDmg(1000);
         arena.fight(enemy, player);
     }
