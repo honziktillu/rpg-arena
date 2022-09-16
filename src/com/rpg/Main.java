@@ -6,7 +6,7 @@ import com.rpg.game.Arena;
 public class Main {
 
     public static void main(String[] args) {
-        System.out.println("asd");
+        System.out.println("zmena ");
         Entity player, enemy;
         player = new Entity("Martin", 100, 10);
         enemy = new Entity("Zdenka", 1000, 1000);
