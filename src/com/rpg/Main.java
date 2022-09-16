@@ -7,7 +7,7 @@ public class Main {
 
     public static void main(String[] args) {
         Entity player, enemy;
-        player = new Entity("Martin", 100, 10);
+        player = new Entity("Honza", 100, 10);
         enemy = new Entity("Zdenka", 1000, 1000);
         Arena arena = new Arena("Skola");
         arena.fight(player, enemy);
