@@ -17,6 +17,6 @@ public class Main {
         enemy.setHp(1000);
         enemy.setDmg(1000);
         arena.fight(enemy, player);
-        System.out.println("test");
+        System.out.println("pauza");
     }
 }
